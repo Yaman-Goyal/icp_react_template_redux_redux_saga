@@ -39,7 +39,6 @@ To get started with the project, follow these steps:
     - Pull dependencies:
 
         ```bash
-        dfx deps pull
         dfx deps init internet_identity --argument '(null)'
         dfx deps deploy
         ```

@@ -11,7 +11,7 @@ const Dashboard = () => {
     const { actor } = useSelector((state) => state.actors);
     const { t } = useTranslation();
     const [isLoading, setIsLoading] = useState(false);
-    const [name, setName] = useState("Jeevan")
+    const [name, setName] = useState("")
     const [message, setMessage] = useState("");
 
     // Function to handle login
