@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import icp from "../../../assets/icp.png";
+import { MainLogo, dashSvg, coursesSvg, settingSvg, profileSvg, certSvg, logoutSvg } from "../utils/svgData";
 import Loader from "../utils/Loader";
 import { logoutStart } from "../Reducers/InternetIdentityReducer";
-
+import { Link } from 'react-router-dom'
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -15,6 +16,8 @@ const Dashboard = () => {
     const [message, setMessage] = useState("");
 
     // Function to handle login
+
+
     const handleLogout = async () => {
         setIsLoading(true);
         try {
@@ -45,44 +48,81 @@ const Dashboard = () => {
             alert("Actor Not Bind, do Logout & Login Again !!");
         }
     }
-
+    const color = "black"
     return (
         <>
-            {isLoading ? <Loader /> :
-                <div className="flex flex-col items-center justify-center w-full bg-[#f1f1f1]" style={{ height: `calc(100vh - 93px)` }}>
-                    <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl p-4 sm:p-6 md:p-10 lg:p-10 xl:p-12 2xl:p-14 bg-white rounded-xl shadow-lg flex flex-col gap-4">
-                        <h2 className="text-center text-2xl sm:text-3xl font-bold text-blue-900 underline decoration-2 underline-offset-4">{t("dashboard.heading")}</h2>
-                        <p className="text-justify text-md sm:text-lg md:text-lg text-gray-600 lg:my-3 md:my-2 sm:my-1 max-h-32 overflow-y-auto px-4">{t("dashboard.welcomeText")}</p>
-                        <div className="w-full flex flex-col justify-center gap-2 p-4 items-center">
-                            <div className="w-4/5 ">
-                                <input
-                                    type='text'
-                                    className={`w-full p-2 rounded-md mt-1  border-2 border-blue-600`}
-                                    placeholder="Enter your name..."
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
-                                />
-                            </div>
-                            <div className="flex">
-                                <button onClick={handleMakeCall} className="flex gap-2 justify-center items-center py-1 px-4 border-2 rounded-xl cursor-pointer border-blue-900 hover:bg-blue-900 hover:text-white duration-300 ease-in-out">Call Backend Canister</button>
-                            </div>
+            <div className="grid sm:grid-cols-12">
+                <div className="col-span-4 h-screen flex flex-col bg-black text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
 
-                            <h1>{message}</h1>
+                    <nav className="flex items-center">
+                        <div className="flex items-center space-x-2">
+                            <div className="pt-[44px] pl-[51px] w-[65px] h-[65px]">
+                                {MainLogo}
+                            </div>
+                            {/* <span className="text-xl  font-[700] font-sans"> Indonesia On Chain </span> */}
+
+                            <div className="font-[700] font-sans w-[99px] h-[52px] pt-[50px] pl-[127px]  text-white">
+                                Indonesia On Chain
+                            </div>
+                        </div>
+                        <div className="absolute flex h-[63px] w-[299px] pt-[174px] pl-[10px] rounded-[12px] justify-center">
+                            <div className="w-[40px] h-[40px]">
+                                {dashSvg}
+                            </div>
+                            <Link to="/dash" className="font-sans block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-500 hover:text-white w-[101px] h-[25px] font-[700] ">
+                                Dashboard
+                            </Link>
                         </div>
 
-                        <div className="flex mt-4 w-full justify-center">
-                            <button className="flex gap-2 justify-center items-center py-1 px-4 border-2  rounded-xl cursor-pointer border-blue-900 hover:bg-blue-900 hover:text-white duration-300 ease-in-out"
-                                onClick={() => { !isLoading ? handleLogout() : '' }} >
-                                <img src={icp} alt="logo" className="w-10 h-10" />
-                                <span className="text-md lg:text-lg md:text-lg font-semibold">
-                                    {isLoading ? t("dashboard.loading") : t("dashboard.logout")}
-                                </span>
-                            </button>
+                        <div className=" absolute flex h-[63px] w-[299px] pt-[254px] pl-[10px] rounded-[12px] justify-center">
+                            <div className="w-[40px] h-[40px]">
+                                {coursesSvg}
+                            </div>
+                            <Link to="/courses" className="font-sans block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-500 hover:text-white w-[101px] h-[25px] font-[700]">
+                                MyCourses
+                            </Link>
                         </div>
-                    </div>
-                </div>}
+
+                        <div className="absolute flex h-[63px] w-[299px] pt-[334px] pl-[10px] rounded-[12px] justify-center">
+                            {certSvg}
+                            <Link to="/certificates" className="font-sans block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-500 hover:text-white">
+                                Certificates
+                            </Link>
+                        </div>
+
+                        <div className="absolute flex h-[63px] w-[299px] pt-[414px] pl-[10px] rounded-[12px] justify-center">
+                            {profileSvg}
+                            <Link to="/profile" className="font-sans block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-500 hover:text-white">
+                                Profile
+                            </Link>
+                        </div>
+
+                        <div className="absolute flex h-[63px] w-[299px] pt-[494px] pl-[10px] rounded-[12px] justify-center">
+                            {settingSvg}
+                            <Link to="/settings" className="font-sans block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-500 hover:text-white">
+                                Settings
+                            </Link>
+                        </div>
+                        <button
+                            className=" absolute flex  pt-[909px] pl-[85px] w-[125px] h-[40px] gap-15  hover:bg-blue-700 rounded-md shadow hover:shadow-lg font-medium text-white"
+                            onClick={() => { !isLoading && handleLogout() }}>
+
+                            {logoutSvg}
+                            <div className="w-6 h-6 mr-2 flex">
+                                {isLoading ? t("dashboard.loading") : t("dashboard.logout")}
+                            </div>
+                        </button>
+
+                    </nav>
+
+
+                </div>
+
+            </div>
         </>
     );
 };
+
+
 
 export default Dashboard;

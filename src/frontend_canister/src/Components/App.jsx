@@ -13,8 +13,8 @@ const App = () => {
     return (
       <>
         <Suspense fallback={<div>Loading...</div>}>
-          <Navbar />
-          <Login />
+          
+          <Dashboard />
         </Suspense>
       </>
     )
@@ -22,10 +22,9 @@ const App = () => {
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
-        <Navbar />
         <Routes>
           <Route path="/*" element={<Error404 />} />
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Suspense>
